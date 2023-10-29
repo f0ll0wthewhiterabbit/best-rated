@@ -7,9 +7,11 @@ import {
   HttpStatus,
   Param,
   Post,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { REVIEW_NOT_FOUND } from './review.constants';
 import { ReviewService } from './review.service';
@@ -33,6 +35,7 @@ export class ReviewController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('byProduct/:id')
   async deleteByProduct(@Param('id') productId: string) {
     const deletedDoc = await this.reviewService.deleteByProductId(productId);
