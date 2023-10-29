@@ -37,3 +37,6 @@ lerna-debug.log*
 # Docker
 /mongo-data
 docker-compose.yml
+
+# Environment files
+*.env
